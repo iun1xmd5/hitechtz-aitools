@@ -46,15 +46,21 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        (function(){
+            emailjs.init("A1qMK3tl6SzoX8Wc8");
+        })();
+    </script>
+
     <style>
         html { scroll-behavior: smooth; }
 
-        /* Hide scrollbar for cleaner look */
         body::-webkit-scrollbar { width: 8px; }
         body::-webkit-scrollbar-track { background: #1a1a2e; }
         body::-webkit-scrollbar-thumb { background: #7c3aed; border-radius: 4px; }
 
-        /* Intersection Observer reveal animations */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
@@ -65,7 +71,6 @@
             transform: translateY(0);
         }
 
-        /* Particle background */
         .particle {
             position: absolute;
             border-radius: 50%;
@@ -73,40 +78,22 @@
             animation: float 6s ease-in-out infinite;
         }
 
-        /* Navbar blur transition */
         .nav-scrolled {
             background: rgba(17, 12, 34, 0.92) !important;
             backdrop-filter: blur(20px);
             box-shadow: 0 4px 30px rgba(124, 58, 237, 0.15);
         }
 
-        /* Star rating */
         .stars { color: #fbbf24; }
     </style>
-
-    <!-- Add before </head> -->
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-
-    <!-- EmailJS SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script>
-        (function(){
-            emailjs.init("A1qMK3tl6SzoX8Wc8"); // Replace with your actual public key
-        })();
-    </script>
-</head>
 </head>
 
 <body class="bg-gradient-to-br from-gray-900 via-purple-900 to-black text-white overflow-x-hidden">
 
-    <!-- ═══════════════════════════════════════ -->
-    <!-- NAVIGATION BAR                         -->
-    <!-- ═══════════════════════════════════════ -->
+    <!-- NAVIGATION BAR -->
     <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 md:h-20">
-                <!-- Logo -->
                 <a href="#" class="flex items-center space-x-2 group" aria-label="Hitechtz Home">
                     <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
                         <i class="fas fa-robot text-lg"></i>
@@ -116,7 +103,6 @@
                     </span>
                 </a>
 
-                <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#features" class="text-gray-300 hover:text-white transition-colors duration-300 text-sm font-medium">Features</a>
                     <a href="#testimonials" class="text-gray-300 hover:text-white transition-colors duration-300 text-sm font-medium">Testimonials</a>
@@ -127,13 +113,11 @@
                     </a>
                 </div>
 
-                <!-- Mobile Hamburger -->
                 <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white focus:outline-none" aria-label="Toggle menu" aria-expanded="false">
                     <i class="fas fa-bars text-xl" id="menu-icon"></i>
                 </button>
             </div>
 
-            <!-- Mobile Menu -->
             <div id="mobile-menu" class="hidden md:hidden pb-6 space-y-3">
                 <a href="#features" class="block px-4 py-3 text-gray-300 hover:text-white hover:bg-purple-500/10 rounded-xl transition-all">Features</a>
                 <a href="#testimonials" class="block px-4 py-3 text-gray-300 hover:text-white hover:bg-purple-500/10 rounded-xl transition-all">Testimonials</a>
@@ -144,11 +128,8 @@
         </div>
     </nav>
 
-    <!-- ═══════════════════════════════════════ -->
-    <!-- HERO SECTION                           -->
-    <!-- ═══════════════════════════════════════ -->
+    <!-- HERO SECTION -->
     <section id="hero" class="min-h-screen flex items-center justify-center px-4 py-20 bg-gradient-to-r from-purple-900 via-blue-900 to-indigo-900 relative overflow-hidden">
-        <!-- Decorative particles -->
         <div class="particle w-3 h-3 top-[20%] left-[10%]" style="animation-delay: 0s;"></div>
         <div class="particle w-2 h-2 top-[60%] left-[80%]" style="animation-delay: 2s;"></div>
         <div class="particle w-4 h-4 top-[30%] left-[70%]" style="animation-delay: 4s;"></div>
@@ -158,7 +139,6 @@
         <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-pink-400/20 to-transparent"></div>
 
         <div class="max-w-7xl mx-auto text-center relative z-10">
-            <!-- Trust badge -->
             <div class="inline-flex items-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 mb-8 animate-fade-in">
                 <span class="stars text-sm mr-2">★★★★★</span>
                 <span class="text-sm text-gray-300">Trusted by 10,000+ teams worldwide</span>
@@ -181,10 +161,9 @@
                 </a>
             </div>
 
-            <!-- Quick stats -->
             <div class="mt-16 grid grid-cols-3 gap-8 max-w-lg mx-auto animate-fade-in-up" style="animation-delay: 0.6s;">
                 <div>
-                    <div class="text-2xl sm:text-3xl font-bold text-white" id="stat-users">10K+</div>
+                    <div class="text-2xl sm:text-3xl font-bold text-white">10K+</div>
                     <div class="text-xs sm:text-sm text-gray-400 mt-1">Active Users</div>
                 </div>
                 <div>
@@ -203,9 +182,7 @@
         </div>
     </section>
 
-    <!-- ═══════════════════════════════════════ -->
-    <!-- FEATURES SECTION                       -->
-    <!-- ═══════════════════════════════════════ -->
+    <!-- FEATURES SECTION -->
     <section id="features" class="py-24 md:py-32 px-4 bg-gray-900/50">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16 md:mb-20 reveal">
@@ -221,7 +198,6 @@
             </div>
 
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-                <!-- Feature 1 -->
                 <div class="group p-8 bg-gray-800/50 rounded-2xl backdrop-blur-sm border border-gray-700/50 hover:border-purple-500/50 hover:bg-purple-500/10 transition-all duration-500 hover:-translate-y-2 reveal" style="transition-delay: 0.1s;">
                     <div class="w-14 h-14 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300">
                         <i class="fas fa-bolt text-xl"></i>
@@ -230,7 +206,6 @@
                     <p class="text-gray-400 group-hover:text-gray-200 transition-colors leading-relaxed">Streamline repetitive tasks with intelligent bots that learn and adapt to your workflow.</p>
                 </div>
 
-                <!-- Feature 2 -->
                 <div class="group p-8 bg-gray-800/50 rounded-2xl backdrop-blur-sm border border-gray-700/50 hover:border-blue-500/50 hover:bg-blue-500/10 transition-all duration-500 hover:-translate-y-2 reveal" style="transition-delay: 0.2s;">
                     <div class="w-14 h-14 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300">
                         <i class="fas fa-chart-line text-xl"></i>
@@ -239,7 +214,6 @@
                     <p class="text-gray-400 group-hover:text-gray-200 transition-colors leading-relaxed">Make data-driven decisions at lightning speed with live analytics dashboards.</p>
                 </div>
 
-                <!-- Feature 3 -->
                 <div class="group p-8 bg-gray-800/50 rounded-2xl backdrop-blur-sm border border-gray-700/50 hover:border-emerald-500/50 hover:bg-emerald-500/10 transition-all duration-500 hover:-translate-y-2 reveal" style="transition-delay: 0.3s;">
                     <div class="w-14 h-14 bg-gradient-to-r from-emerald-500 to-green-500 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300">
                         <i class="fas fa-brain text-xl"></i>
@@ -248,7 +222,6 @@
                     <p class="text-gray-400 group-hover:text-gray-200 transition-colors leading-relaxed">Predict market trends, customer behavior, and outcomes before they happen.</p>
                 </div>
 
-                <!-- Feature 4 -->
                 <div class="group p-8 bg-gray-800/50 rounded-2xl backdrop-blur-sm border border-gray-700/50 hover:border-orange-500/50 hover:bg-orange-500/10 transition-all duration-500 hover:-translate-y-2 reveal" style="transition-delay: 0.4s;">
                     <div class="w-14 h-14 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300">
                         <i class="fas fa-shield-halved text-xl"></i>
@@ -260,9 +233,7 @@
         </div>
     </section>
 
-    <!-- ═══════════════════════════════════════ -->
-    <!-- HOW IT WORKS                           -->
-    <!-- ═══════════════════════════════════════ -->
+    <!-- HOW IT WORKS -->
     <section class="py-24 px-4 bg-gray-900/30">
         <div class="max-w-5xl mx-auto">
             <div class="text-center mb-16 reveal">
@@ -275,7 +246,6 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-8 relative">
-                <!-- Connector line (desktop) -->
                 <div class="hidden md:block absolute top-16 left-[20%] right-[20%] h-0.5 bg-gradient-to-r from-purple-500 via-blue-500 to-emerald-500 opacity-30"></div>
 
                 <div class="text-center reveal" style="transition-delay: 0.1s;">
@@ -297,9 +267,7 @@
         </div>
     </section>
 
-    <!-- ═══════════════════════════════════════ -->
-    <!-- TESTIMONIALS                           -->
-    <!-- ═══════════════════════════════════════ -->
+    <!-- TESTIMONIALS -->
     <section id="testimonials" class="py-24 md:py-32 px-4 bg-gradient-to-r from-indigo-900/80 to-purple-900/80">
         <div class="max-w-5xl mx-auto">
             <div class="text-center mb-16 reveal">
@@ -312,7 +280,6 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-6 md:gap-8">
-                <!-- Testimonial 1 -->
                 <div class="p-8 bg-gray-800/30 rounded-2xl backdrop-blur-sm border border-gray-700/30 hover:border-purple-500/30 transition-all duration-300 reveal" style="transition-delay: 0.1s;">
                     <div class="stars text-sm mb-4">★★★★★</div>
                     <p class="text-lg mb-6 text-gray-200 leading-relaxed">"Transformed our operations overnight! We saved 40+ hours per week within the first month."</p>
@@ -325,7 +292,6 @@
                     </div>
                 </div>
 
-                <!-- Testimonial 2 -->
                 <div class="p-8 bg-gray-800/30 rounded-2xl backdrop-blur-sm border border-gray-700/30 hover:border-blue-500/30 transition-all duration-300 reveal" style="transition-delay: 0.2s;">
                     <div class="stars text-sm mb-4">★★★★★</div>
                     <p class="text-lg mb-6 text-gray-200 leading-relaxed">"Best ROI on any SaaS we've ever invested in. Paid for itself in the first week."</p>
@@ -338,7 +304,6 @@
                     </div>
                 </div>
 
-                <!-- Testimonial 3 -->
                 <div class="p-8 bg-gray-800/30 rounded-2xl backdrop-blur-sm border border-gray-700/30 hover:border-emerald-500/30 transition-all duration-300 reveal" style="transition-delay: 0.3s;">
                     <div class="stars text-sm mb-4">★★★★★</div>
                     <p class="text-lg mb-6 text-gray-200 leading-relaxed">"Scales infinitely with our growth. From 5 users to 5,000 — zero hiccups."</p>
@@ -354,9 +319,7 @@
         </div>
     </section>
 
-    <!-- ═══════════════════════════════════════ -->
-    <!-- PRICING                                -->
-    <!-- ═══════════════════════════════════════ -->
+    <!-- PRICING -->
     <section id="pricing" class="py-24 md:py-32 px-4 bg-gray-900/50">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16 md:mb-20 reveal">
@@ -370,7 +333,6 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-6 md:gap-8 items-start">
-                <!-- Starter -->
                 <div class="bg-gray-800/50 p-8 md:p-10 rounded-3xl border-2 border-gray-700/50 hover:border-emerald-500/50 transition-all duration-500 hover:-translate-y-2 reveal" style="transition-delay: 0.1s;">
                     <h3 class="text-2xl font-bold mb-2">Starter</h3>
                     <p class="text-gray-400 text-sm mb-6">Perfect for individuals</p>
@@ -387,7 +349,6 @@
                     </a>
                 </div>
 
-                <!-- Pro (Featured) -->
                 <div class="bg-gradient-to-br from-purple-600 to-indigo-700 p-8 md:p-10 rounded-3xl border-2 border-purple-400/50 shadow-2xl shadow-purple-500/20 relative md:-mt-4 md:mb-4 hover:-translate-y-2 transition-all duration-500 reveal" style="transition-delay: 0.2s;">
                     <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-amber-400 to-orange-400 text-gray-900 px-5 py-1.5 rounded-full font-bold text-xs uppercase tracking-wider">
                         ⭐ Most Popular
@@ -408,7 +369,6 @@
                     </a>
                 </div>
 
-                <!-- Enterprise -->
                 <div class="bg-gray-800/50 p-8 md:p-10 rounded-3xl border-2 border-gray-700/50 hover:border-orange-500/50 transition-all duration-500 hover:-translate-y-2 reveal" style="transition-delay: 0.3s;">
                     <h3 class="text-2xl font-bold mb-2">Enterprise</h3>
                     <p class="text-gray-400 text-sm mb-6">For large organizations</p>
@@ -429,9 +389,7 @@
         </div>
     </section>
 
-    <!-- ═══════════════════════════════════════ -->
-    <!-- CTA / FOOTER                           -->
-    <!-- ═══════════════════════════════════════ -->
+    <!-- CTA / FOOTER -->
     <section id="cta" class="py-24 md:py-32 px-4 bg-gradient-to-b from-gray-900 to-black relative">
         <div id="demo" class="max-w-4xl mx-auto text-center reveal">
             <h2 class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
@@ -454,9 +412,8 @@
                     <span id="btn-text">Get Started Free <i class="fas fa-arrow-right ml-2"></i></span>
                 </button>
             </form>
-<p id="form-message" class="mt-4 text-sm text-center"></p>
-
-            <p id="form-message" class="mt-4 text-sm hidden"></p>
+            
+            <p id="form-message" class="mt-4 text-sm text-center"></p>
             <p class="text-gray-500 text-sm mt-4">Free forever. No credit card required.</p>
         </div>
 
@@ -501,8 +458,9 @@
                         </a>
                         <a href="https://github.com/iun1xmd5" class="w-10 h-10 bg-gray-800 hover:bg-purple-500/20 rounded-lg flex items-center justify-center text-gray-400 hover:text-purple-400 transition-all" aria-label="GitHub">
                             <i class="fab fa-github"></i>
+                        </a>
                         <a href="https://www.instagram.com/hitechtz" class="w-10 h-10 bg-gray-800 hover:bg-purple-500/20 rounded-lg flex items-center justify-center text-gray-400 hover:text-purple-400 transition-all" aria-label="Instagram">
-                            <i class="fab fa-github"></i>
+                            <i class="fab fa-instagram"></i>
                         </a>
                     </div>
                 </div>
@@ -519,18 +477,14 @@
         </footer>
     </section>
 
-    <!-- ═══════════════════════════════════════ -->
-    <!-- JAVASCRIPT                             -->
-    <!-- ═══════════════════════════════════════ -->
+    <!-- JAVASCRIPT -->
     <script>
-        // ── Navbar scroll effect ──────────────────────
         const navbar = document.getElementById('navbar');
         const handleScroll = () => {
             navbar.classList.toggle('nav-scrolled', window.scrollY > 50);
         };
         window.addEventListener('scroll', handleScroll, { passive: true });
 
-        // ── Mobile menu toggle ────────────────────────
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
@@ -543,7 +497,6 @@
             mobileMenuBtn.setAttribute('aria-expanded', !isOpen);
         });
 
-        // Close mobile menu on link click
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
@@ -553,7 +506,6 @@
             });
         });
 
-        // ── Smooth scroll for anchor links ────────────
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const targetId = this.getAttribute('href');
@@ -568,7 +520,6 @@
             });
         });
 
-        // ── Intersection Observer for reveal animations ──
         const revealElements = document.querySelectorAll('.reveal');
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -581,20 +532,17 @@
 
         revealElements.forEach(el => revealObserver.observe(el));
 
-        // ── Email form validation ─────────────────────
-                // ══════════════════════════════════════════
-        // ── Email Form with EmailJS ───────────────
-        // ══════════════════════════════════════════
+        // EmailJS Form Handler
         const signupForm = document.getElementById('signup-form');
         const emailInput = document.getElementById('email-input');
         const formMessage = document.getElementById('form-message');
         const submitBtn = document.getElementById('submit-btn');
         const btnText = document.getElementById('btn-text');
 
-        // EmailJS Configuration
         const EMAILJS_CONFIG = {
-            serviceID: 'service_s9drzjp',      // ← Replace with your Service ID
-            templateID: 'template_64jmnr9',    // ← Replace with your Template ID
+            serviceID: 'service_s9drzjp',
+            templateID: 'template_64jmnr9',
+            welcomeTemplateID: 'template_q8kvppx'
         };
 
         signupForm.addEventListener('submit', async (e) => {
@@ -603,10 +551,8 @@
             const email = emailInput.value.trim();
             const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-            // Reset message styles
             formMessage.className = 'mt-4 text-sm text-center';
 
-            // Validation
             if (!isValid) {
                 showError('⚠️ Please enter a valid email address.');
                 emailInput.classList.add('ring-2', 'ring-red-500', 'border-red-500');
@@ -616,25 +562,12 @@
                 return;
             }
 
-            // Show loading state
             setLoadingState(true);
 
             try {
-                // Prepare template parameters
-                const templateParams = {
-                    email: email,
-                    signup_time: new Date().toLocaleString('en-US', {
-                        dateStyle: 'full',
-                        timeStyle: 'short'
-                    })
-                };
-
-                // Send email via EmailJS
-                            try {
-                // Send admin notification
                 const adminNotification = await emailjs.send(
-                    EMAILJS_CONFIG.service_s9drzjp,
-                    EMAILJS_CONFIG.template_64jmnr9,
+                    EMAILJS_CONFIG.serviceID,
+                    EMAILJS_CONFIG.templateID,
                     {
                         email: email,
                         signup_time: new Date().toLocaleString('en-US', {
@@ -646,10 +579,9 @@
 
                 console.log('✅ Admin notification sent:', adminNotification.status);
 
-                // Send welcome email to user
                 const userWelcome = await emailjs.send(
-                    EMAILJS_CONFIG.service_s9drzjp,
-                    EMAILJS_CONFIG.template_q8kvppx,
+                    EMAILJS_CONFIG.serviceID,
+                    EMAILJS_CONFIG.welcomeTemplateID,
                     {
                         to_email: email,
                         to_name: email.split('@')[0],
@@ -692,7 +624,6 @@
             }
         });
 
-        // Helper Functions
         function setLoadingState(isLoading) {
             submitBtn.disabled = isLoading;
             if (isLoading) {
@@ -707,16 +638,15 @@
         function showSuccess(message) {
             formMessage.textContent = message;
             formMessage.classList.add('text-emerald-400', 'font-semibold');
-            formMessage.classList.remove('text-red-400');
+            formMessage.classList.remove('text-red-400', 'hidden');
         }
 
         function showError(message) {
             formMessage.textContent = message;
             formMessage.classList.add('text-red-400', 'font-semibold');
-            formMessage.classList.remove('text-emerald-400');
+            formMessage.classList.remove('text-emerald-400', 'hidden');
         }
 
-        // ── Active nav link highlighting ──────────────
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('nav a[href^="#"]');
 
