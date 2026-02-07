@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Add before </head> -->
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -85,6 +83,19 @@
         /* Star rating */
         .stars { color: #fbbf24; }
     </style>
+
+    <!-- Add before </head> -->
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        (function(){
+            emailjs.init("A1qMK3tl6SzoX8Wc8"); // Replace with your actual public key
+        })();
+    </script>
+</head>
 </head>
 
 <body class="bg-gradient-to-br from-gray-900 via-purple-900 to-black text-white overflow-x-hidden">
@@ -432,15 +443,19 @@
                 <input
                     type="email"
                     id="email-input"
+                    name="email"
                     placeholder="Enter your work email"
                     required
                     aria-label="Email address"
+                    autocomplete="email"
                     class="flex-1 px-6 py-4 bg-gray-800/60 border border-gray-600 rounded-full text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
                 >
-                <button type="submit" class="bg-gradient-to-r from-emerald-500 to-teal-600 px-10 py-4 rounded-full font-semibold hover:shadow-lg hover:shadow-emerald-500/40 transform hover:scale-105 transition-all duration-300 whitespace-nowrap">
-                    Get Started Free <i class="fas fa-arrow-right ml-2"></i>
+                <button type="submit" id="submit-btn" class="bg-gradient-to-r from-emerald-500 to-teal-600 px-10 py-4 rounded-full font-semibold hover:shadow-lg hover:shadow-emerald-500/40 transform hover:scale-105 transition-all duration-300 whitespace-nowrap">
+                    <span id="btn-text">Get Started Free <i class="fas fa-arrow-right ml-2"></i></span>
                 </button>
             </form>
+<p id="form-message" class="mt-4 text-sm text-center"></p>
+<p class="text-gray-500 text-sm mt-4">Free forever. No credit card required.</p>
             <p id="form-message" class="mt-4 text-sm hidden"></p>
             <p class="text-gray-500 text-sm mt-4">Free forever. No credit card required.</p>
         </div>
@@ -567,30 +582,124 @@
         revealElements.forEach(el => revealObserver.observe(el));
 
         // ── Email form validation ─────────────────────
+                // ══════════════════════════════════════════
+        // ── Email Form with EmailJS ───────────────
+        // ══════════════════════════════════════════
         const signupForm = document.getElementById('signup-form');
         const emailInput = document.getElementById('email-input');
         const formMessage = document.getElementById('form-message');
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = document.getElementById('btn-text');
 
-        signupForm.addEventListener('submit', (e) => {
+        // EmailJS Configuration
+        const EMAILJS_CONFIG = {
+            serviceID: 'service_s9drzjp',      // ← Replace with your Service ID
+            templateID: 'template_64jmnr9',    // ← Replace with your Template ID
+        };
+
+        signupForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+            
             const email = emailInput.value.trim();
             const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-            formMessage.classList.remove('hidden', 'text-red-400', 'text-emerald-400');
+            // Reset message styles
+            formMessage.className = 'mt-4 text-sm text-center';
 
+            // Validation
             if (!isValid) {
-                formMessage.textContent = '⚠️ Please enter a valid email address.';
-                formMessage.classList.add('text-red-400');
-                emailInput.classList.add('ring-2', 'ring-red-500');
-                setTimeout(() => emailInput.classList.remove('ring-2', 'ring-red-500'), 3000);
-            } else {
-                formMessage.textContent = '✅ Welcome aboard! Check your inbox for next steps.';
-                formMessage.classList.add('text-emerald-400');
+                showError('⚠️ Please enter a valid email address.');
+                emailInput.classList.add('ring-2', 'ring-red-500', 'border-red-500');
+                setTimeout(() => {
+                    emailInput.classList.remove('ring-2', 'ring-red-500', 'border-red-500');
+                }, 3000);
+                return;
+            }
+
+            // Show loading state
+            setLoadingState(true);
+
+            try {
+                // Prepare template parameters
+                const templateParams = {
+                    email: email,
+                    signup_time: new Date().toLocaleString('en-US', {
+                        dateStyle: 'full',
+                        timeStyle: 'short'
+                    })
+                };
+
+                // Send email via EmailJS
+                const response = await emailjs.send(
+                    EMAILJS_CONFIG.serviceID,
+                    EMAILJS_CONFIG.templateID,
+                    templateParams
+                );
+
+                console.log('✅ EmailJS Success:', response.status, response.text);
+
+                // Show success message
+                showSuccess('✅ Welcome aboard! Check your inbox for next steps.');
+                
+                // Clear input
                 emailInput.value = '';
-                // TODO: Replace with actual API call
-                // fetch('/api/signup', { method: 'POST', body: JSON.stringify({ email }) });
+                
+                // Add success animation
+                emailInput.classList.add('ring-2', 'ring-emerald-500', 'border-emerald-500');
+                setTimeout(() => {
+                    emailInput.classList.remove('ring-2', 'ring-emerald-500', 'border-emerald-500');
+                }, 2000);
+
+                // Optional: Track with analytics
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'signup', {
+                        'event_category': 'engagement',
+                        'event_label': 'email_form'
+                    });
+                }
+
+            } catch (error) {
+                console.error('❌ EmailJS Error:', error);
+                
+                let errorMsg = '❌ Oops! Something went wrong. ';
+                
+                if (error.status === 412) {
+                    errorMsg += 'Please check your email configuration.';
+                } else if (error.status === 400) {
+                    errorMsg += 'Invalid email format.';
+                } else {
+                    errorMsg += 'Please try again later.';
+                }
+                
+                showError(errorMsg);
+            } finally {
+                setLoadingState(false);
             }
         });
+
+        // Helper Functions
+        function setLoadingState(isLoading) {
+            submitBtn.disabled = isLoading;
+            if (isLoading) {
+                btnText.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
+                submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+            } else {
+                btnText.innerHTML = 'Get Started Free <i class="fas fa-arrow-right ml-2"></i>';
+                submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+            }
+        }
+
+        function showSuccess(message) {
+            formMessage.textContent = message;
+            formMessage.classList.add('text-emerald-400', 'font-semibold');
+            formMessage.classList.remove('text-red-400');
+        }
+
+        function showError(message) {
+            formMessage.textContent = message;
+            formMessage.classList.add('text-red-400', 'font-semibold');
+            formMessage.classList.remove('text-emerald-400');
+        }
 
         // ── Active nav link highlighting ──────────────
         const sections = document.querySelectorAll('section[id]');
