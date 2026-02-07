@@ -630,27 +630,42 @@
                 };
 
                 // Send email via EmailJS
-                const response = await emailjs.send(
-                    EMAILJS_CONFIG.serviceID,
-                    EMAILJS_CONFIG.templateID,
-                    templateParams
+                            try {
+                // Send admin notification
+                const adminNotification = await emailjs.send(
+                    EMAILJS_CONFIG.service_s9drzjp,
+                    EMAILJS_CONFIG.template_64jmnr9,
+                    {
+                        email: email,
+                        signup_time: new Date().toLocaleString('en-US', {
+                            dateStyle: 'full',
+                            timeStyle: 'short'
+                        })
+                    }
                 );
 
-                console.log('✅ EmailJS Success:', response.status, response.text);
+                console.log('✅ Admin notification sent:', adminNotification.status);
 
-                // Show success message
+                // Send welcome email to user
+                const userWelcome = await emailjs.send(
+                    EMAILJS_CONFIG.service_s9drzjp,
+                    EMAILJS_CONFIG.template_q8kvppx,
+                    {
+                        to_email: email,
+                        to_name: email.split('@')[0],
+                        user_email: email
+                    }
+                );
+
+                console.log('✅ Welcome email sent to user:', userWelcome.status);
+
                 showSuccess('✅ Welcome aboard! Check your inbox for next steps.');
-                
-                // Clear input
                 emailInput.value = '';
-                
-                // Add success animation
                 emailInput.classList.add('ring-2', 'ring-emerald-500', 'border-emerald-500');
                 setTimeout(() => {
                     emailInput.classList.remove('ring-2', 'ring-emerald-500', 'border-emerald-500');
                 }, 2000);
 
-                // Optional: Track with analytics
                 if (typeof gtag !== 'undefined') {
                     gtag('event', 'signup', {
                         'event_category': 'engagement',
