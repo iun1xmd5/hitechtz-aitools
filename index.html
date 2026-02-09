@@ -567,7 +567,21 @@
             // HONEYPOT SPAM PROTECTION
             // ═══════════════════════════════════════════════
             if (honeypotField.value !== '') {
+                // Enhanced logging
                 console.log('🤖 Bot detected via honeypot - silently rejecting');
+                console.log('Honeypot value:', honeypotField.value);
+                console.log('Email attempted:', email);
+                console.log('Timestamp:', new Date().toISOString());
+                
+                // Optional: Send bot detection to analytics
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'bot_blocked', {
+                        'event_category': 'security',
+                        'event_label': 'honeypot',
+                        'value': email
+                    });
+                }
+                
                 showSuccess('✅ Thank you for signing up!');
                 emailInput.value = '';
                 return;
