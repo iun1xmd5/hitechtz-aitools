@@ -4,7 +4,7 @@ title: Hitechz, Inc. | Remote AI & Technology Consulting
 description: Professional online consulting services including AI advisory, software strategy, implementation guidance, and secure remote collaboration for businesses and individuals.
 keywords: AI consulting, technology advisory, software strategy, remote consulting, implementation guidance
 author: Hitechz, Inc.
-robots: index, follow
+robots: index
 ---
 # 🚀 Hitechz, Inc.
 
