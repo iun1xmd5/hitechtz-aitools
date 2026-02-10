@@ -5,9 +5,9 @@ description: Professional online consulting services including AI advisory, soft
 keywords: AI consulting, technology advisory, software strategy, remote consulting, implementation guidance
 author: Hitechz, Inc.
 robots: index, follow
-
-# 🚀 Hitechz, Inc.
 ---
+# 🚀 Hitechz, Inc.
+
 
 **Hitechz, Inc.** operates as a **remote-first consulting provider**, supporting clients across industries with practical, business‑focused technical guidance.
 
