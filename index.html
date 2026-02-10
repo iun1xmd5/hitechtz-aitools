@@ -50,16 +50,6 @@
 
     <!-- EmailJS SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    
-    <!-- Stripe.js (for payment processing) -->
-    <script src="https://js.stripe.com/v3/"></script>
-    
-    <!-- PayPal SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=USD"></script>
-    
-    <!-- Flutterwave SDK (for African payments) -->
-    <script src="https://checkout.flutterwave.com/v3.js"></script>
-
     <script>
         (function(){
             emailjs.init("A1qMK3tl6SzoX8Wc8");
@@ -98,6 +88,7 @@
 
         .stars { color: #fbbf24; }
 
+        /* Honeypot - completely hidden from real users */
         .honeypot-field {
             position: absolute !important;
             left: -9999px !important;
@@ -106,86 +97,6 @@
             opacity: 0 !important;
             pointer-events: none !important;
             tab-index: -1;
-        }
-
-        /* Payment Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(8px);
-            animation: fadeIn 0.3s ease-out;
-        }
-
-        .modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-content {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            padding: 0;
-            border-radius: 20px;
-            max-width: 500px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(124, 58, 237, 0.3);
-            animation: fadeInUp 0.4s ease-out;
-        }
-
-        .payment-method {
-            display: flex;
-            align-items: center;
-            padding: 16px 20px;
-            margin: 8px 0;
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .payment-method:hover {
-            background: rgba(124, 58, 237, 0.2);
-            border-color: #7c3aed;
-            transform: translateX(5px);
-        }
-
-        .payment-method.selected {
-            background: rgba(124, 58, 237, 0.3);
-            border-color: #7c3aed;
-            box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
-        }
-
-        .payment-icon {
-            width: 40px;
-            height: 40px;
-            margin-right: 15px;
-            font-size: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .spinner {
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top: 3px solid white;
-            width: 24px;
-            height: 24px;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -279,7 +190,7 @@
         </div>
     </section>
 
-    <!-- FEATURES (keeping existing code) -->
+    <!-- FEATURES -->
     <section id="features" class="py-24 md:py-32 px-4 bg-gray-900/50">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16 md:mb-20 reveal">
@@ -408,7 +319,7 @@
         </div>
     </section>
 
-    <!-- PRICING WITH PAYMENT INTEGRATION -->
+    <!-- PRICING -->
     <section id="pricing" class="py-24 md:py-32 px-4 bg-gray-900/50">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16 md:mb-20 reveal">
@@ -416,11 +327,10 @@
                     <i class="fas fa-tag mr-1"></i> Pricing
                 </span>
                 <h2 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">Simple, Transparent Pricing</h2>
-                <p class="text-gray-400 mt-4 text-lg">No hidden fees. Cancel anytime. Secure payments powered by Stripe, PayPal, and more.</p>
+                <p class="text-gray-400 mt-4 text-lg">No hidden fees. Cancel anytime.</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-6 md:gap-8 items-start">
-                <!-- Starter Plan -->
                 <div class="bg-gray-800/50 p-8 md:p-10 rounded-3xl border-2 border-gray-700/50 hover:border-emerald-500/50 transition-all duration-500 hover:-translate-y-2 reveal" style="transition-delay: 0.1s;">
                     <h3 class="text-2xl font-bold mb-2">Starter</h3>
                     <p class="text-gray-400 text-sm mb-6">Perfect for individuals</p>
@@ -435,7 +345,6 @@
                     <a href="#cta" class="block w-full text-center bg-emerald-500/10 hover:bg-emerald-500 text-emerald-300 hover:text-white py-4 rounded-xl font-semibold border border-emerald-500/30 hover:border-emerald-500 transition-all duration-300">Get Started Free</a>
                 </div>
 
-                <!-- Pro Plan -->
                 <div class="bg-gradient-to-br from-purple-600 to-indigo-700 p-8 md:p-10 rounded-3xl border-2 border-purple-400/50 shadow-2xl shadow-purple-500/20 relative md:-mt-4 md:mb-4 hover:-translate-y-2 transition-all duration-500 reveal" style="transition-delay: 0.2s;">
                     <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-amber-400 to-orange-400 text-gray-900 px-5 py-1.5 rounded-full font-bold text-xs uppercase tracking-wider">⭐ Most Popular</div>
                     <h3 class="text-2xl font-bold mb-2">Pro</h3>
@@ -449,12 +358,9 @@
                         <li class="flex items-center"><i class="fas fa-check text-white mr-3 text-sm"></i>Full API Access</li>
                         <li class="flex items-center"><i class="fas fa-check text-white mr-3 text-sm"></i>Team Collaboration</li>
                     </ul>
-                    <button onclick="openPaymentModal('Pro', 29)" class="block w-full text-center bg-white text-purple-700 py-4 rounded-xl font-bold shadow-xl hover:shadow-white/30 hover:scale-[1.02] transition-all duration-300">
-                        <i class="fas fa-credit-card mr-2"></i>Buy Pro Plan →
-                    </button>
+                    <a href="#cta" class="block w-full text-center bg-white text-purple-700 py-4 rounded-xl font-bold shadow-xl hover:shadow-white/30 hover:scale-[1.02] transition-all duration-300">Start Pro Trial →</a>
                 </div>
 
-                <!-- Enterprise Plan -->
                 <div class="bg-gray-800/50 p-8 md:p-10 rounded-3xl border-2 border-gray-700/50 hover:border-orange-500/50 transition-all duration-500 hover:-translate-y-2 reveal" style="transition-delay: 0.3s;">
                     <h3 class="text-2xl font-bold mb-2">Enterprise</h3>
                     <p class="text-gray-400 text-sm mb-6">For large organizations</p>
@@ -473,130 +379,7 @@
         </div>
     </section>
 
-    <!-- PAYMENT MODAL -->
-    <div id="payment-modal" class="modal">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px; border-radius: 20px 20px 0 0;">
-                <div class="flex justify-between items-center">
-                    <h2 class="text-2xl font-bold text-white">
-                        <i class="fas fa-lock mr-2"></i>Secure Checkout
-                    </h2>
-                    <button onclick="closePaymentModal()" class="text-white hover:text-gray-200 text-2xl">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <p class="text-purple-200 text-sm mt-2" id="modal-plan-info">Pro Plan - $29/month</p>
-            </div>
-
-            <!-- Modal Body -->
-            <div style="padding: 30px;">
-                <p class="text-gray-300 mb-6 text-center">Choose your preferred payment method:</p>
-
-                <!-- Payment Methods -->
-                <div id="payment-methods">
-                    <!-- Credit/Debit Cards (Stripe) -->
-                    <div class="payment-method" onclick="selectPaymentMethod('stripe')" data-method="stripe">
-                        <div class="payment-icon">
-                            <i class="fab fa-cc-stripe" style="color: #635BFF;"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h4 class="font-semibold text-white">Credit/Debit Card</h4>
-                            <p class="text-xs text-gray-400">Visa, Mastercard, Amex</p>
-                        </div>
-                        <i class="fas fa-chevron-right text-gray-500"></i>
-                    </div>
-
-                    <!-- PayPal -->
-                    <div class="payment-method" onclick="selectPaymentMethod('paypal')" data-method="paypal">
-                        <div class="payment-icon">
-                            <i class="fab fa-paypal" style="color: #00457C;"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h4 class="font-semibold text-white">PayPal</h4>
-                            <p class="text-xs text-gray-400">Pay with PayPal balance or card</p>
-                        </div>
-                        <i class="fas fa-chevron-right text-gray-500"></i>
-                    </div>
-
-                    <!-- M-Pesa (via Flutterwave) -->
-                    <div class="payment-method" onclick="selectPaymentMethod('mpesa')" data-method="mpesa">
-                        <div class="payment-icon">
-                            <i class="fas fa-mobile-alt" style="color: #00A950;"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h4 class="font-semibold text-white">M-Pesa</h4>
-                            <p class="text-xs text-gray-400">Mobile money (Kenya)</p>
-                        </div>
-                        <i class="fas fa-chevron-right text-gray-500"></i>
-                    </div>
-
-                    <!-- Airtel Money -->
-                    <div class="payment-method" onclick="selectPaymentMethod('airtel')" data-method="airtel">
-                        <div class="payment-icon">
-                            <i class="fas fa-mobile-alt" style="color: #E20000;"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h4 class="font-semibold text-white">Airtel Money</h4>
-                            <p class="text-xs text-gray-400">Mobile money (Africa)</p>
-                        </div>
-                        <i class="fas fa-chevron-right text-gray-500"></i>
-                    </div>
-
-                    <!-- Tigo Pesa -->
-                    <div class="payment-method" onclick="selectPaymentMethod('tigo')" data-method="tigo">
-                        <div class="payment-icon">
-                            <i class="fas fa-mobile-alt" style="color: #0075C9;"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h4 class="font-semibold text-white">Tigo Pesa</h4>
-                            <p class="text-xs text-gray-400">Mobile money (Tanzania)</p>
-                        </div>
-                        <i class="fas fa-chevron-right text-gray-500"></i>
-                    </div>
-
-                    <!-- Alipay -->
-                    <div class="payment-method" onclick="selectPaymentMethod('alipay')" data-method="alipay">
-                        <div class="payment-icon">
-                            <i class="fab fa-alipay" style="color: #1677FF;"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h4 class="font-semibold text-white">Alipay</h4>
-                            <p class="text-xs text-gray-400">Popular in China</p>
-                        </div>
-                        <i class="fas fa-chevron-right text-gray-500"></i>
-                    </div>
-
-                    <!-- WeChat Pay -->
-                    <div class="payment-method" onclick="selectPaymentMethod('wechat')" data-method="wechat">
-                        <div class="payment-icon">
-                            <i class="fab fa-weixin" style="color: #07C160;"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h4 class="font-semibold text-white">WeChat Pay</h4>
-                            <p class="text-xs text-gray-400">Popular in China</p>
-                        </div>
-                        <i class="fas fa-chevron-right text-gray-500"></i>
-                    </div>
-                </div>
-
-                <!-- Proceed Button -->
-                <button id="proceed-btn" onclick="proceedPayment()" disabled class="w-full mt-8 bg-gradient-to-r from-purple-500 to-pink-500 text-white py-4 rounded-xl font-bold text-lg disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-purple-500/40 transition-all duration-300">
-                    <span id="proceed-text">Select a payment method</span>
-                </button>
-
-                <!-- Security Badge -->
-                <div class="text-center mt-6">
-                    <p class="text-xs text-gray-500">
-                        <i class="fas fa-shield-alt mr-1"></i>
-                        Secured by 256-bit SSL encryption
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- CTA / FOOTER (keeping existing code) -->
+    <!-- CTA / FOOTER -->
     <section id="cta" class="py-24 md:py-32 px-4 bg-gradient-to-b from-gray-900 to-black relative">
         <div id="demo" class="max-w-4xl mx-auto text-center reveal">
             <h2 class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
@@ -604,12 +387,15 @@
             </h2>
             <p class="text-xl text-gray-400 mb-10">Join 10,000+ teams already automating their future.</p>
 
+            <!-- SIGNUP FORM WITH HONEYPOT -->
             <form id="signup-form" class="flex flex-col sm:flex-row gap-4 justify-center max-w-xl mx-auto relative" novalidate>
+                <!-- HONEYPOT FIELD (Hidden spam trap) -->
                 <div class="honeypot-field" aria-hidden="true">
                     <label for="website">Website (leave blank)</label>
                     <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" placeholder="Your website">
                 </div>
 
+                <!-- Real email field -->
                 <input
                     type="email"
                     id="email-input"
@@ -662,6 +448,7 @@
                 <div>
                     <h4 class="font-semibold mb-4 text-gray-300">Connect</h4>
                     <div class="flex space-x-4">
+                        <!-- Social links with target="_blank" and rel="noopener noreferrer" for security -->
                         <a href="https://x.com/hitechtz" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-gray-800 hover:bg-purple-500/20 rounded-lg flex items-center justify-center text-gray-400 hover:text-purple-400 transition-all" aria-label="Follow us on Twitter/X">
                             <i class="fab fa-twitter"></i>
                         </a>
@@ -694,346 +481,8 @@
     <!-- ══════════════════════════════════════════════════════ -->
     <script>
         // ══════════════════════════════════════════════════════
-        // CONFIGURATION
+        // NAVIGATION & UI
         // ══════════════════════════════════════════════════════
-        const CONFIG = {
-            emailjs: {
-                serviceID: 'service_s9drzjp',
-                adminTemplateID: 'template_64jmnr9',
-                welcomeTemplateID: 'template_q8kvppx'
-            },
-            googleSheetsURL: 'https://script.google.com/macros/s/AKfycbzDclocqVSjR13yqOpSfn4l6K5g62PEepZZDKVHs_KIHdszi7QnixR6nHXvci8de0FDXg/exec',
-            
-            // PAYMENT CONFIGURATION
-            payment: {
-                stripe: {
-                    publishableKey: 'pk_test_YOUR_STRIPE_PUBLISHABLE_KEY', // ⚠️ REPLACE
-                    proPriceId: 'price_YOUR_PRO_PRICE_ID' // ⚠️ REPLACE
-                },
-                flutterwave: {
-                    publicKey: 'FLWPUBK_TEST-YOUR_PUBLIC_KEY' // ⚠️ REPLACE
-                },
-                paypal: {
-                    clientId: 'YOUR_PAYPAL_CLIENT_ID' // Already in <script> tag
-                }
-            }
-        };
-
-        // Initialize Stripe
-        let stripe;
-        if (window.Stripe) {
-            stripe = Stripe(CONFIG.payment.stripe.publishableKey);
-        }
-
-        // ══════════════════════════════════════════════════════
-        // PAYMENT SYSTEM
-        // ══════════════════════════════════════════════════════
-        let selectedPlan = null;
-        let selectedPrice = null;
-        let selectedMethod = null;
-
-        function openPaymentModal(plan, price) {
-            selectedPlan = plan;
-            selectedPrice = price;
-            
-            document.getElementById('modal-plan-info').textContent = `${plan} Plan - $${price}/month`;
-            document.getElementById('payment-modal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closePaymentModal() {
-            document.getElementById('payment-modal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-            
-            // Reset selection
-            document.querySelectorAll('.payment-method').forEach(el => {
-                el.classList.remove('selected');
-            });
-            selectedMethod = null;
-            document.getElementById('proceed-btn').disabled = true;
-            document.getElementById('proceed-text').textContent = 'Select a payment method';
-        }
-
-        function selectPaymentMethod(method) {
-            selectedMethod = method;
-            
-            // Update UI
-            document.querySelectorAll('.payment-method').forEach(el => {
-                el.classList.remove('selected');
-            });
-            document.querySelector(`[data-method="${method}"]`).classList.add('selected');
-            
-            // Enable proceed button
-            const proceedBtn = document.getElementById('proceed-btn');
-            proceedBtn.disabled = false;
-            document.getElementById('proceed-text').innerHTML = `<i class="fas fa-lock mr-2"></i>Proceed with ${getMethodName(method)}`;
-        }
-
-        function getMethodName(method) {
-            const names = {
-                stripe: 'Card',
-                paypal: 'PayPal',
-                mpesa: 'M-Pesa',
-                airtel: 'Airtel Money',
-                tigo: 'Tigo Pesa',
-                alipay: 'Alipay',
-                wechat: 'WeChat Pay'
-            };
-            return names[method] || method;
-        }
-
-        async function proceedPayment() {
-            if (!selectedMethod) return;
-
-            const proceedBtn = document.getElementById('proceed-btn');
-            const originalText = proceedBtn.innerHTML;
-            proceedBtn.innerHTML = '<div class="spinner mx-auto"></div>';
-            proceedBtn.disabled = true;
-
-            try {
-                switch(selectedMethod) {
-                    case 'stripe':
-                        await processStripePayment();
-                        break;
-                    case 'paypal':
-                        await processPayPalPayment();
-                        break;
-                    case 'mpesa':
-                    case 'airtel':
-                    case 'tigo':
-                        await processFlutterwavePayment(selectedMethod);
-                        break;
-                    case 'alipay':
-                    case 'wechat':
-                        await processAsianPayment(selectedMethod);
-                        break;
-                    default:
-                        throw new Error('Payment method not supported yet');
-                }
-            } catch (error) {
-                console.error('Payment error:', error);
-                alert('Payment failed: ' + error.message);
-                proceedBtn.innerHTML = originalText;
-                proceedBtn.disabled = false;
-            }
-        }
-
-        // ═══════════════════════════════════════════════════
-        // STRIPE PAYMENT (Credit/Debit Cards)
-        // ═══════════════════════════════════════════════════
-        async function processStripePayment() {
-            try {
-                // In production, create checkout session via your backend
-                const response = await fetch('/api/create-checkout-session', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        plan: selectedPlan,
-                        price: selectedPrice,
-                        priceId: CONFIG.payment.stripe.proPriceId
-                    })
-                });
-
-                const session = await response.json();
-                
-                // Redirect to Stripe Checkout
-                const result = await stripe.redirectToCheckout({
-                    sessionId: session.id
-                });
-
-                if (result.error) {
-                    throw new Error(result.error.message);
-                }
-            } catch (error) {
-                // Fallback: Demo mode
-                console.log('Demo mode: Stripe payment');
-                setTimeout(() => {
-                    showPaymentSuccess('stripe');
-                }, 2000);
-            }
-        }
-
-        // ═══════════════════════════════════════════════════
-        // PAYPAL PAYMENT
-        // ═══════════════════════════════════════════════════
-        async function processPayPalPayment() {
-            closePaymentModal();
-            
-            // Create PayPal buttons container
-            const container = document.createElement('div');
-            container.id = 'paypal-button-container';
-            container.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10000;background:white;padding:30px;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,0.3);';
-            document.body.appendChild(container);
-
-            paypal.Buttons({
-                createOrder: function(data, actions) {
-                    return actions.order.create({
-                        purchase_units: [{
-                            description: `Hitechtz ${selectedPlan} Plan`,
-                            amount: {
-                                value: selectedPrice.toString()
-                            }
-                        }]
-                    });
-                },
-                onApprove: function(data, actions) {
-                    return actions.order.capture().then(function(details) {
-                        document.body.removeChild(container);
-                        showPaymentSuccess('paypal', details);
-                    });
-                },
-                onCancel: function() {
-                    document.body.removeChild(container);
-                    openPaymentModal(selectedPlan, selectedPrice);
-                },
-                onError: function(err) {
-                    console.error('PayPal error:', err);
-                    document.body.removeChild(container);
-                    alert('PayPal payment failed. Please try again.');
-                }
-            }).render('#paypal-button-container');
-        }
-
-        // ═══════════════════════════════════════════════════
-        // FLUTTERWAVE PAYMENT (African Mobile Money)
-        // ═══════════════════════════════════════════════════
-        async function processFlutterwavePayment(method) {
-            const methodNames = {
-                mpesa: 'M-Pesa',
-                airtel: 'Airtel Money',
-                tigo: 'Tigo Pesa'
-            };
-
-            FlutterwaveCheckout({
-                public_key: CONFIG.payment.flutterwave.publicKey,
-                tx_ref: 'hitechtz-' + Date.now(),
-                amount: selectedPrice,
-                currency: "USD",
-                payment_options: "mobilemoney",
-                customer: {
-                    email: "customer@example.com",
-                    name: "Customer Name"
-                },
-                customizations: {
-                    title: `Hitechtz ${selectedPlan} Plan`,
-                    description: `Payment for ${selectedPlan} subscription`,
-                    logo: "https://your-logo-url.com/logo.png"
-                },
-                callback: function(data) {
-                    console.log('Flutterwave payment:', data);
-                    if (data.status === "successful") {
-                        showPaymentSuccess(method, data);
-                    }
-                    closePaymentModal();
-                },
-                onclose: function() {
-                    console.log('Payment cancelled');
-                }
-            });
-        }
-
-        // ═══════════════════════════════════════════════════
-        // ASIAN PAYMENT METHODS (Alipay, WeChat)
-        // ═══════════════════════════════════════════════════
-        async function processAsianPayment(method) {
-            // These are processed via Stripe with specific payment method types
-            try {
-                const response = await fetch('/api/create-asian-payment', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        method: method,
-                        amount: selectedPrice * 100,
-                        plan: selectedPlan
-                    })
-                });
-
-                const { clientSecret } = await response.json();
-                
-                const { error } = await stripe.confirmPayment({
-                    clientSecret,
-                    confirmParams: {
-                        return_url: window.location.origin + '/payment-success'
-                    }
-                });
-
-                if (error) throw error;
-                
-            } catch (error) {
-                // Demo mode
-                console.log('Demo mode: Asian payment');
-                setTimeout(() => {
-                    showPaymentSuccess(method);
-                }, 2000);
-            }
-        }
-
-        // ═══════════════════════════════════════════════════
-        // PAYMENT SUCCESS HANDLER
-        // ═══════════════════════════════════════════════════
-        async function showPaymentSuccess(method, paymentData = {}) {
-            closePaymentModal();
-
-            // Show success message
-            const successHTML = `
-                <div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10000;background:white;padding:40px;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.3);text-align:center;max-width:400px;">
-                    <div style="width:80px;height:80px;background:linear-gradient(135deg,#10b981,#059669);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
-                        <i class="fas fa-check" style="font-size:40px;color:white;"></i>
-                    </div>
-                    <h3 style="color:#111;font-size:24px;margin-bottom:10px;">Payment Successful!</h3>
-                    <p style="color:#666;margin-bottom:20px;">Your ${selectedPlan} plan is now active.</p>
-                    <p style="color:#999;font-size:14px;">Check your email for confirmation.</p>
-                    <button onclick="location.reload()" style="margin-top:20px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;padding:12px 30px;border:none;border-radius:8px;font-weight:600;cursor:pointer;">
-                        Continue
-                    </button>
-                </div>
-                <div style="position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;"></div>
-            `;
-            document.body.insertAdjacentHTML('beforeend', successHTML);
-
-            // Save payment to Google Sheets
-            try {
-                await fetch(CONFIG.googleSheetsURL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'text/plain' },
-                    body: JSON.stringify({
-                        email: paymentData.email || 'customer@example.com',
-                        timestamp: new Date().toLocaleString(),
-                        source: 'Payment: ' + selectedPlan,
-                        status: 'Paid',
-                        payment_method: method,
-                        amount: selectedPrice
-                    })
-                });
-            } catch (error) {
-                console.error('Failed to log payment:', error);
-            }
-
-            // Send confirmation email
-            try {
-                await emailjs.send(
-                    CONFIG.emailjs.serviceID,
-                    CONFIG.emailjs.adminTemplateID,
-                    {
-                        user_email: paymentData.email || 'customer@example.com',
-                        user_name: 'Customer',
-                        signup_time: new Date().toLocaleString(),
-                        sheets_saved: 'Yes',
-                        payment_plan: selectedPlan,
-                        payment_amount: selectedPrice,
-                        payment_method: method
-                    }
-                );
-            } catch (error) {
-                console.error('Failed to send email:', error);
-            }
-        }
-
-        // ══════════════════════════════════════════════════════
-        // EXISTING CODE (Navigation, Forms, etc.)
-        // ══════════════════════════════════════════════════════
-        
-        // Navigation
         const navbar = document.getElementById('navbar');
         const handleScroll = () => {
             navbar.classList.toggle('nav-scrolled', window.scrollY > 50);
@@ -1087,7 +536,9 @@
 
         revealElements.forEach(el => revealObserver.observe(el));
 
-        // Signup Form
+        // ══════════════════════════════════════════════════════
+        // EMAIL FORM WITH GOOGLE APPS SCRIPT INTEGRATION
+        // ══════════════════════════════════════════════════════
         const signupForm = document.getElementById('signup-form');
         const emailInput = document.getElementById('email-input');
         const formMessage = document.getElementById('form-message');
@@ -1095,14 +546,42 @@
         const btnText = document.getElementById('btn-text');
         const honeypotField = document.getElementById('website');
 
+        // EmailJS Configuration
+        const EMAILJS_CONFIG = {
+            serviceID: 'service_s9drzjp',
+            templateID: 'template_64jmnr9',
+            welcomeTemplateID: 'template_q8kvppx'
+        };
+
+        // Google Apps Script Web App URL
+        // REPLACE THIS with your deployed Google Apps Script URL
+        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzLBbZV-8XIHpF6d59eb234704Ytyy-Ext8lSjYea2bOyvtCzkFVdeoNuRl9hFyvAEeBA/exec';
+
         signupForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
             const email = emailInput.value.trim();
             const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
+            // ═══════════════════════════════════════════════
+            // HONEYPOT SPAM PROTECTION
+            // ═══════════════════════════════════════════════
             if (honeypotField.value !== '') {
+                // Enhanced logging
                 console.log('🤖 Bot detected via honeypot - silently rejecting');
+                console.log('Honeypot value:', honeypotField.value);
+                console.log('Email attempted:', email);
+                console.log('Timestamp:', new Date().toISOString());
+                
+                // Optional: Send bot detection to analytics
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'bot_blocked', {
+                        'event_category': 'security',
+                        'event_label': 'honeypot',
+                        'value': email
+                    });
+                }
+                
                 showSuccess('✅ Thank you for signing up!');
                 emailInput.value = '';
                 return;
@@ -1128,114 +607,89 @@
                     timeZone: 'UTC'
                 });
 
-                const userName = email.split('@')[0];
-
-                let sheetsSaved = false;
+                // ═══════════════════════════════════════════════
+                // 1. SEND TO GOOGLE SHEETS VIA APPS SCRIPT
+                // ═══════════════════════════════════════════════
                 try {
-                    const sheetsPayload = {
-                        email: email,
-                        timestamp: timestamp,
-                        source: 'Website Signup Form',
-                        status: 'New Lead'
-                    };
-
-                    const sheetsResponse = await fetch(CONFIG.googleSheetsURL, {
+                    const sheetsResponse = await fetch(GOOGLE_SHEETS_URL, {
                         method: 'POST',
+                        mode: 'no-cors', // Important for Google Apps Script
                         headers: {
-                            'Content-Type': 'text/plain',
+                            'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify(sheetsPayload)
+                        body: JSON.stringify({
+                            email: email,
+                            timestamp: timestamp,
+                            source: 'Website Signup Form',
+                            status: 'New Lead'
+                        })
                     });
                     
-                    if (sheetsResponse.ok) {
-                        const sheetsData = await sheetsResponse.json();
-                        if (sheetsData.status === 'success') {
-                            console.log('✅ Data saved to Google Sheets at row:', sheetsData.row);
-                            sheetsSaved = true;
-                        } else {
-                            console.warn('⚠️ Google Sheets warning:', sheetsData.message);
-                        }
-                    }
-                    
+                    console.log('✅ Data sent to Google Sheets');
                 } catch (sheetsError) {
-                    console.error('❌ Google Sheets failed (non-critical):', sheetsError);
+                    console.warn('⚠️ Google Sheets integration failed (non-critical):', sheetsError);
                 }
 
-                let adminNotified = false;
-                try {
-                    const adminResponse = await emailjs.send(
-                        CONFIG.emailjs.serviceID,
-                        CONFIG.emailjs.adminTemplateID,
-                        {
-                            user_email: email,
-                            user_name: userName,
-                            signup_time: timestamp,
-                            sheets_saved: sheetsSaved ? 'Yes' : 'No'
-                        }
-                    );
-
-                    if (adminResponse.status === 200) {
-                        console.log('✅ Admin notification sent successfully');
-                        adminNotified = true;
+                // ═══════════════════════════════════════════════
+                // 2. SEND ADMIN NOTIFICATION VIA EMAILJS
+                // ═══════════════════════════════════════════════
+                const adminNotification = await emailjs.send(
+                    EMAILJS_CONFIG.serviceID,
+                    EMAILJS_CONFIG.templateID,
+                    {
+                        email: email,
+                        signup_time: timestamp
                     }
-                } catch (adminError) {
-                    console.error('❌ Admin notification failed:', adminError);
-                }
+                );
 
-                let userNotified = false;
-                try {
-                    const welcomeResponse = await emailjs.send(
-                        CONFIG.emailjs.serviceID,
-                        CONFIG.emailjs.welcomeTemplateID,
-                        {
-                            to_email: email,
-                            to_name: userName,
-                            user_email: email,
-                            signup_date: timestamp
-                        }
-                    );
+                console.log('✅ Admin notification sent:', adminNotification.status);
 
-                    if (welcomeResponse.status === 200) {
-                        console.log('✅ Welcome email sent to user');
-                        userNotified = true;
+                // ═══════════════════════════════════════════════
+                // 3. SEND WELCOME EMAIL TO USER
+                // ═══════════════════════════════════════════════
+                const userWelcome = await emailjs.send(
+                    EMAILJS_CONFIG.serviceID,
+                    EMAILJS_CONFIG.welcomeTemplateID,
+                    {
+                        to_email: email,
+                        to_name: email.split('@')[0],
+                        user_email: email
                     }
-                } catch (welcomeError) {
-                    console.error('❌ Welcome email failed:', welcomeError);
-                }
+                );
 
-                if (adminNotified || userNotified) {
-                    showSuccess('✅ Welcome aboard! Check your inbox for next steps.');
-                    emailInput.value = '';
-                    emailInput.classList.add('ring-2', 'ring-emerald-500', 'border-emerald-500');
-                    
-                    setTimeout(() => {
-                        emailInput.classList.remove('ring-2', 'ring-emerald-500', 'border-emerald-500');
-                    }, 2000);
+                console.log('✅ Welcome email sent to user:', userWelcome.status);
 
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', 'signup', {
-                            'event_category': 'engagement',
-                            'event_label': 'email_form',
-                            'value': email
-                        });
-                    }
-                } else {
-                    throw new Error('Both email notifications failed');
+                // ═══════════════════════════════════════════════
+                // SUCCESS FEEDBACK
+                // ═══════════════════════════════════════════════
+                showSuccess('✅ Welcome aboard! Check your inbox for next steps.');
+                emailInput.value = '';
+                emailInput.classList.add('ring-2', 'ring-emerald-500', 'border-emerald-500');
+                setTimeout(() => {
+                    emailInput.classList.remove('ring-2', 'ring-emerald-500', 'border-emerald-500');
+                }, 2000);
+
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'signup', {
+                        'event_category': 'engagement',
+                        'event_label': 'email_form',
+                        'value': email
+                    });
                 }
 
             } catch (error) {
-                console.error('❌ Critical error:', error);
+                console.error('❌ Error:', error);
                 
                 let errorMsg = '❌ Oops! Something went wrong. ';
                 
                 if (error.status === 412) {
-                    errorMsg += 'Email service configuration error.';
+                    errorMsg += 'Please check your email configuration.';
                 } else if (error.status === 400) {
                     errorMsg += 'Invalid email format.';
                 } else if (error.text) {
                     errorMsg += error.text;
                 } else {
-                    errorMsg += 'Please try again or contact support.';
+                    errorMsg += 'Please try again later.';
                 }
                 
                 showError(errorMsg);
@@ -1244,6 +698,9 @@
             }
         });
 
+        // ══════════════════════════════════════════════════════
+        // HELPER FUNCTIONS
+        // ══════════════════════════════════════════════════════
         function setLoadingState(isLoading) {
             submitBtn.disabled = isLoading;
             if (isLoading) {
@@ -1267,6 +724,9 @@
             formMessage.classList.remove('text-emerald-400', 'hidden');
         }
 
+        // ══════════════════════════════════════════════════════
+        // ACTIVE NAV LINK HIGHLIGHTING
+        // ══════════════════════════════════════════════════════
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('nav a[href^="#"]');
 
