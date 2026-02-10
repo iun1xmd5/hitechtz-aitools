@@ -7,7 +7,7 @@ author: Hitechz, Inc.
 robots: index, follow
 
 # 🚀 Hitechz, Inc.
-
+---
 
 **Hitechz, Inc.** operates as a **remote-first consulting provider**, supporting clients across industries with practical, business‑focused technical guidance.
 
